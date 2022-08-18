@@ -10,8 +10,8 @@ class welcomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       body: Stack(children: [
-        // SizedBox(width: double.infinity,height: double.infinity,child: Image.asset("assets\images\background.png"),)
-      ],)
+        // SizedBox(width: doublje.infinity,height: double.infinity,child: Image.asset("assets\images\background.png"),)
+      ],),
     ));
   }
 }
