@@ -1,3 +1,5 @@
+import 'package:e_commerce/view/screen/auth/login_screen.dart';
+import 'package:e_commerce/view/screen/auth/signup_screen.dart';
 import 'package:get/get.dart';
 
 import '../view/screen/welcome_screen.dart';
@@ -10,6 +12,13 @@ static const welcome = Routes.welcomeScreen;
     GetPage(
       name: Routes.welcomeScreen,
       page: () => const welcomeScreen(),
+    ),
+    GetPage(
+      name: Routes.loginScreen,
+      page: () => const loginScreen(),
+    ),GetPage(
+      name: Routes.signUpScreen,
+      page: () => const signUpScreen(),
     )
   ];
 
@@ -19,5 +28,7 @@ static const welcome = Routes.welcomeScreen;
 
 class Routes {
   static const welcomeScreen ="/welcomeScreen";
+  static const loginScreen ="/loginScreen";
+  static const signUpScreen ="/signUpScreen";
   
 }
