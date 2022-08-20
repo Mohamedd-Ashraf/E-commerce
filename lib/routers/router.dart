@@ -18,7 +18,7 @@ static const welcome = Routes.welcomeScreen;
       page: () => const loginScreen(),
     ),GetPage(
       name: Routes.signUpScreen,
-      page: () => const signUpScreen(),
+      page: () =>  signUpScreen(),
     )
   ];
 
