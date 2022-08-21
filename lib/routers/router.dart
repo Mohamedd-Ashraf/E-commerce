@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/bindings/auth_binding.dart';
 import 'package:e_commerce/view/screen/auth/login_screen.dart';
 import 'package:e_commerce/view/screen/auth/signup_screen.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ static const welcome = Routes.welcomeScreen;
     ),GetPage(
       name: Routes.signUpScreen,
       page: () =>  signUpScreen(),
+      binding: AuthBinding(),
     )
   ];
 

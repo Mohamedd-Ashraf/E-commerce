@@ -33,7 +33,7 @@ class AuthTextFormFiels extends StatelessWidget {
       obscureText: obscureText ?? false,
       validator: (value) => validatoion(value),
       decoration: InputDecoration(
-        fillColor: Colors.grey.shade200,
+        fillColor:darkModeFormFieldColor,
         prefixIcon: prefixIcon,
         suffixIcon: surfixIcon,
         hintText: hintText,
@@ -41,11 +41,11 @@ class AuthTextFormFiels extends StatelessWidget {
             color: Colors.black.withOpacity(0.2), fontSize: 16, fontWeight: FontWeight.w500),
         filled: true,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: mainColor,),
+          borderSide: BorderSide(color: darkModeWidgetColor,),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: mainColor,),
+          borderSide: BorderSide(color: darkModeWidgetColor,),
           borderRadius: BorderRadius.circular(10),
         ),
         errorBorder: OutlineInputBorder(
