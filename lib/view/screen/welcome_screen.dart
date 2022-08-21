@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_import
 
 import 'package:e_commerce/routers/router.dart';
+import 'package:e_commerce/view/screen/auth/button.dart';
 import 'package:e_commerce/view/screen/auth/login_screen.dart';
 import 'package:e_commerce/view/screen/auth/signup_screen.dart';
 import 'package:e_commerce/view/widgets/my_text.dart';
@@ -82,22 +83,16 @@ class welcomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 180,
                 ),
-                ElevatedButton(
-                  onPressed: (() {
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 80),
+                  child: myButton(
+                      onPressed: () {
                         Get.toNamed(Routes.loginScreen);
-                  }),
-                  child: myText(
-                      text: "Get Start",
-                      size: 22,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                  style: ElevatedButton.styleFrom(
-                      primary: mainColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 12)),
+                      },
+                      text: myText(
+                          text: "Get Started",
+                          size: 20,
+                          color: darkModeBackGroundColor)),
                 ),
                 SizedBox(
                   height: 30,

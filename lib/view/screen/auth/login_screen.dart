@@ -1,4 +1,5 @@
 import 'package:e_commerce/uitils/themes.dart';
+import 'package:e_commerce/view/screen/auth/forget_password.dart';
 import 'package:e_commerce/view/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -111,7 +112,9 @@ class loginScreen extends StatelessWidget {
                         Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(forgetPassowrd());
+                                },
                                 child: myText(
                                     text: "Forget Password?",
                                     size: 14,
@@ -124,7 +127,7 @@ class loginScreen extends StatelessWidget {
                           text: "Remember Me",
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         myButton(
                           onPressed: () {

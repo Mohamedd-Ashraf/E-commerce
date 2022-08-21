@@ -8,13 +8,13 @@ class myText extends StatelessWidget {
   final double size;
   final Color color;
   TextDecoration? decoration;
-  final FontWeight fontWeight;
+   FontWeight? fontWeight;
    myText(
       {Key? key,
       required this.text,
       required this.size,
       required this.color,
-      required this.fontWeight, this.decoration})
+       this.fontWeight, this.decoration})
       : super(key: key);
 
   @override
