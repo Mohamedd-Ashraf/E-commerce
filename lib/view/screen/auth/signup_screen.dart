@@ -1,7 +1,7 @@
-import 'package:e_commerce/logic/controller/auth_controller.dart';
-import 'package:e_commerce/uitils/my_string.dart';
-import 'package:e_commerce/uitils/themes.dart';
-import 'package:e_commerce/view/screen/auth/login_screen.dart';
+import '../../../logic/controller/auth_controller.dart';
+import '../../../uitils/my_string.dart';
+import '../../../uitils/themes.dart';
+import 'login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,9 +16,10 @@ import 'button.dart';
 class signUpScreen extends StatelessWidget {
   signUpScreen({Key? key}) : super(key: key);
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+    final controller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +29,7 @@ class signUpScreen extends StatelessWidget {
           backgroundColor: darkModeBackGroundColor,
           body: SingleChildScrollView(
             child: Column(children: [
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height / 1.3,
                 child: Padding(
@@ -122,7 +123,7 @@ class signUpScreen extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        checkWidget(),
+                        checkWidget(text:"I Accept" , buttonText: "Terms and Conditions",),
                         SizedBox(
                           height: 20,
                         ),

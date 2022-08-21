@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-
 import '../logic/controller/auth_controller.dart';
 
 String validationEmail =
@@ -9,6 +8,6 @@ String validationEmail =
 String validationName = r'^[a-z A-Z]+$';
 
 String baseUrl = 'https://fakestoreapi.com';
-  final controller = Get.find<AuthController>();
+
 
 

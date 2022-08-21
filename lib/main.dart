@@ -1,5 +1,5 @@
-import 'package:e_commerce/routers/router.dart';
-import 'package:e_commerce/view/screen/welcome_screen.dart';
+import 'routers/router.dart';
+import 'view/screen/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

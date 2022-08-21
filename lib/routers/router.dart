@@ -1,6 +1,6 @@
-import 'package:e_commerce/logic/bindings/auth_binding.dart';
-import 'package:e_commerce/view/screen/auth/login_screen.dart';
-import 'package:e_commerce/view/screen/auth/signup_screen.dart';
+import '../logic/bindings/auth_binding.dart';
+import '../view/screen/auth/login_screen.dart';
+import '../view/screen/auth/signup_screen.dart';
 import 'package:get/get.dart';
 
 import '../view/screen/welcome_screen.dart';
@@ -16,7 +16,9 @@ static const welcome = Routes.welcomeScreen;
     ),
     GetPage(
       name: Routes.loginScreen,
-      page: () => const loginScreen(),
+      page: () =>  loginScreen(),
+      binding: AuthBinding(),
+
     ),GetPage(
       name: Routes.signUpScreen,
       page: () =>  signUpScreen(),

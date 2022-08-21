@@ -1,12 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:e_commerce/uitils/themes.dart';
+import 'package:e_commerce/view/widgets/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
-import 'package:e_commerce/uitils/themes.dart';
-import 'package:e_commerce/view/widgets/my_text.dart';
-import 'package:get/get.dart';
 
 class FooteContainer extends StatelessWidget {
   final String text;
