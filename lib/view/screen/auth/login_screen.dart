@@ -16,7 +16,7 @@ import 'button.dart';
 
 class loginScreen extends StatelessWidget {
   loginScreen({Key? key}) : super(key: key);
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final controller = Get.find<AuthController>();
@@ -61,17 +61,16 @@ class loginScreen extends StatelessWidget {
                           height: 50,
                         ),
                         AuthTextFormFiels(
-                          controller: nameController,
+                          controller: emailController,
                           validatoion: (Value) {
-                            if (Value.toString().length >= 2 &&
-                                RegExp(validationName).hasMatch(Value)) {
+                            if (RegExp(validationEmail).hasMatch(Value)) {
                               return null;
                             } else
-                              return "Enter a Valid User Name";
+                              return "Enter a Valid E-mail";
                           },
-                          prefixIcon: Image.asset("assets/images/user.png",
+                          prefixIcon: Image.asset("assets/images/email.png",
                               color: darkModeWidgetColor),
-                          hintText: "User Name",
+                          hintText: "E-mail",
                         ),
                         SizedBox(
                           height: 20,
@@ -129,16 +128,27 @@ class loginScreen extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        myButton(
+                        GetBuilder<AuthController>(builder: (_){
+                          return     myButton(
                           onPressed: () {
-                            // Get.isDarkMode.;
-                          },
+                       
+                              if (formKey.currentState!.validate()) {
+                                String name = emailController.text.trim(),
+                                    passowrd = passwordController.text;
+                                    
+                                controller.LoginUsingFireBase(passowrd:passowrd ,  email:name);
+
+                              }
+                            
+                            },
+                         
                           text: myText(
                               text: "Log In",
                               size: 18,
                               color: darkModeBackGroundColor,
                               fontWeight: FontWeight.bold),
-                        ),
+                        ) ;
+                        }),
                         SizedBox(
                           height: 20,
                         ),

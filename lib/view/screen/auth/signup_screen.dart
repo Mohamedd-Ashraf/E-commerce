@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../logic/controller/auth_controller.dart';
 import '../../../uitils/my_string.dart';
 import '../../../uitils/themes.dart';
@@ -19,7 +21,7 @@ class signUpScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-    final controller = Get.find<AuthController>();
+  final controller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -81,7 +83,7 @@ class signUpScreen extends StatelessWidget {
                             if (RegExp(validationEmail).hasMatch(Value)) {
                               return null;
                             } else
-                              return "Enter a Valid Name";
+                              return "Enter a Valid E-mail";
                           },
                           prefixIcon: Image.asset("assets/images/email.png",
                               color: darkModeWidgetColor),
@@ -110,7 +112,6 @@ class signUpScreen extends StatelessWidget {
                                   onPressed: () {
                                     controller.changeVisiblty();
                                   },
-                                  
                                   icon: Icon(
                                     controller.visiblePassword
                                         ? Icons.visibility_off_outlined
@@ -123,19 +124,44 @@ class signUpScreen extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        checkWidget(text:"I Accept" , buttonText: "Terms and Conditions",),
+                        checkWidget(
+                          text: "I Accept",
+                          buttonText: "Terms and Conditions",
+                        ),
                         SizedBox(
                           height: 20,
                         ),
-                        myButton(
-                            onPressed: () {
-                              // Get.isDarkMode.;
-                            },
-                            text: myText(
-                                text: "Sign Up",
-                                size: 18,
-                                color: darkModeBackGroundColor,
-                                fontWeight: FontWeight.bold))
+                        GetBuilder<AuthController>(builder: (_) {
+                          return myButton(
+                              onPressed: () {
+                                if (controller.checkedBox) {
+                                  if (formKey.currentState!.validate()) {
+                                    String name = nameController.text.trim(),
+                                        passowrd = passwordController.text,
+                                        email = emailController.text.trim();
+
+                                    controller.signUpUsingFireBase(
+                                        name: name,
+                                        passowrd: passowrd,
+                                        email: email);
+                                  }
+                                } else {
+                                  Get.snackbar(
+                                    "Terms Not Accepted !",
+                                    "Please Accept Our Terms",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor:
+                                        Color.fromARGB(255, 164, 18, 18),
+                                    colorText: Colors.white,
+                                  );
+                                }
+                              },
+                              text: myText(
+                                  text: "Sign Up",
+                                  size: 18,
+                                  color: darkModeBackGroundColor,
+                                  fontWeight: FontWeight.bold));
+                        })
                       ],
                     ),
                   ),

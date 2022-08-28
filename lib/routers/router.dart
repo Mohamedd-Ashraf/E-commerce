@@ -1,4 +1,5 @@
 import 'package:e_commerce/view/screen/auth/forget_password.dart';
+import 'package:e_commerce/view/screen/mainScreen.dart';
 
 import '../logic/bindings/auth_binding.dart';
 import '../view/screen/auth/login_screen.dart';
@@ -30,6 +31,11 @@ static const welcome = Routes.welcomeScreen;
       page: () =>  signUpScreen(),
       binding: AuthBinding(),
     )
+    ,GetPage(
+      name: Routes.mainScreen,
+      page: () =>  MainScreen(),
+      binding: AuthBinding(),
+    )
   ];
 
 
@@ -41,5 +47,6 @@ class Routes {
   static const loginScreen ="/loginScreen";
   static const signUpScreen ="/signUpScreen";
   static const authForgetPassWord ="/forgetPassowrd";
+  static const mainScreen ="/mainScreen";
   
 }
