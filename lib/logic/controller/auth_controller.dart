@@ -1,5 +1,7 @@
+import 'package:e_commerce/models/facebook_user.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   var displayName = "mo";
   var displayUserPhoto = "";
-
+  FacebookUser? facebookmodel;
 
   changeVisiblty() {
     visiblePassword = !visiblePassword;
@@ -27,10 +29,8 @@ class AuthController extends GetxController {
     required String name,
     required String passowrd,
     required String email,
-  }) async 
-  {
-    try 
-    {
+  }) async {
+    try {
       await auth
           .createUserWithEmailAndPassword(
         email: email,
@@ -74,8 +74,7 @@ class AuthController extends GetxController {
   void LoginUsingFireBase({
     required String passowrd,
     required String email,
-  }) async 
-  {
+  }) async {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: passowrd)
@@ -100,7 +99,7 @@ class AuthController extends GetxController {
         backgroundColor: Color.fromARGB(255, 164, 18, 18),
         colorText: Colors.white,
       );
-    }catch (error) {
+    } catch (error) {
       Get.snackbar(
         "Error!",
         error.toString(),
@@ -111,23 +110,41 @@ class AuthController extends GetxController {
     }
   }
 
-  void LoginUsingFacebook() {}
-   void signinUsingGoogle() async{
+  void LoginUsingFacebook() async {
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+      if (loginResult.status == LoginStatus.success) {
+        final data = await FacebookAuth.instance.getUserData();
+        facebookmodel = FacebookUser.fromJson(data);
+        displayName = facebookmodel!.name!;
+        update();
+        Get.to(MainScreen());
+      }
+    } on Exception catch (error) {
+     Get.snackbar(
+        "Error!",
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Color.fromARGB(255, 164, 18, 18),
+        colorText: Colors.white,
+      );
+    }
+    /*   displayName = loginResult.!;
+      displayUserPhoto = googleUser.photoUrl!; */
+  }
 
-      try {
-     final GoogleSignInAccount? googleUser =  await GoogleSignIn().signIn().then((value) {
-      update();
-      Get.to(MainScreen());
-
-     });
+  void signinUsingGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser =
+          await GoogleSignIn().signIn().then((value) {
+        update();
+        Get.to(MainScreen());
+      });
       displayName = googleUser!.displayName!;
       displayUserPhoto = googleUser.photoUrl!;
-
     } on FirebaseAuthException catch (error) {
       String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
-
-    
-    }catch (error) {
+    } catch (error) {
       Get.snackbar(
         "Error!",
         error.toString(),
@@ -136,15 +153,12 @@ class AuthController extends GetxController {
         colorText: Colors.white,
       );
     }
-   }
-  
-  void resetPassword(String email) async
-   {
-    try 
-    {
+  }
+
+  void resetPassword(String email) async {
+    try {
       await auth.sendPasswordResetEmail(email: email).then((value) {
-        
-      update();
+        update();
       });
 
       // update();
@@ -156,11 +170,10 @@ class AuthController extends GetxController {
       if (error.code == 'user-not-found') {
         message =
             ' Account does not exists for that $email.. Create your account by signing up..';
-            print(message);
+        print(message);
       } else {
         message = error.message.toString();
-            print(message);
-
+        print(message);
       }
       Get.snackbar(
         title,
@@ -183,6 +196,5 @@ class AuthController extends GetxController {
   void signOutFromApp() {
     GoogleSignIn().signOut();
     auth.signOut();
-
   }
 }

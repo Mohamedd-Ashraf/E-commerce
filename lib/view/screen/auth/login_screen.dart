@@ -171,10 +171,14 @@ class loginScreen extends StatelessWidget {
                             SizedBox(
                               width: 15,
                             ),
-                            InkWell(
-                                onTap: (() {}),
-                                child:
-                                    Image.asset("assets/images/facebook.png"))
+                            GetBuilder<AuthController>(builder: (_) {
+                              return InkWell(
+                                  onTap: (() {
+                                    controller.LoginUsingFacebook();
+                                  }),
+                                  child: Image.asset(
+                                      "assets/images/facebook.png"));
+                            })
                           ],
                         )
                       ],

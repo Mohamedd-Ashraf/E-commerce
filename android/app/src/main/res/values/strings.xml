@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<string name="app_name">El Zreebah Shop</string>
+<string name="facebook_app_id">398692465671828</string>
+<string name="fb_login_protocol_scheme">fb398692465671828</string>
+<string name="facebook_client_token">174036106383cc1778c884511626bd5e</string>
+
+
+</resources>
