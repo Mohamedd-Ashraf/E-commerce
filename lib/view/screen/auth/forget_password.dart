@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/uitils/themes.dart';
 import 'package:e_commerce/view/screen/auth/button.dart';
 import 'package:e_commerce/view/widgets/auth/text_form_field.dart';
@@ -12,7 +13,8 @@ import '../../../uitils/my_string.dart';
 
 class forgetPassowrd extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
-  TextEditingController controller = new TextEditingController();
+  TextEditingController email = new TextEditingController();
+  final controller = Get.find<AuthController>();
   forgetPassowrd({Key? key}) : super(key: key);
 
   @override
@@ -67,7 +69,7 @@ class forgetPassowrd extends StatelessWidget {
                     height: 20,
                   ),
                   AuthTextFormFiels(
-                    controller: controller,
+                    controller: email,
                     validatoion: (Value) {
                       if (RegExp(validationEmail).hasMatch(Value)) {
                         return null;
@@ -81,12 +83,16 @@ class forgetPassowrd extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  myButton(
-                      onPressed: () {},
+                  GetBuilder<AuthController>(builder: (_){
+                    return myButton(
+                      onPressed: () {
+                        controller.resetPassword(email.text);
+                      },
                       text: myText(
                           text: "Send",
                           size: 18,
-                          color: darkModeBackGroundColor)),
+                          color: darkModeBackGroundColor));
+                  })
                 ],
               ),
             )),

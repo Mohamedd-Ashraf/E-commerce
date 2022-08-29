@@ -8,7 +8,7 @@ class AuthController extends GetxController {
   bool visiblePassword = false;
   bool checkedBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
-  var displayNmae = "";
+  var displayNmae = "mo";
 
   changeVisiblty() {
     visiblePassword = !visiblePassword;
@@ -24,7 +24,8 @@ class AuthController extends GetxController {
     required String name,
     required String passowrd,
     required String email,
-  }) async {
+  }) async 
+  {
     try {
       await auth
           .createUserWithEmailAndPassword(
@@ -69,7 +70,8 @@ class AuthController extends GetxController {
   void LoginUsingFireBase({
     required String passowrd,
     required String email,
-  }) async {
+  }) async 
+  {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: passowrd)
@@ -107,6 +109,45 @@ class AuthController extends GetxController {
 
   void LoginUsingGoogle() {}
   void LoginUsingFacebook() {}
-  void resetPassword() {}
+  
+  void resetPassword(String email) async
+   {
+    try 
+    {
+      await auth.sendPasswordResetEmail(email: email);
+
+      update();
+      // Get.back();
+    } on FirebaseAuthException catch (error) {
+      String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;
+      String message = '';
+
+      if (error.code == 'user-not-found') {
+        message =
+            ' Account does not exists for that $email.. Create your account by signing up..';
+            print(message);
+      } else {
+        message = error.message.toString();
+            print(message);
+
+      }
+      Get.snackbar(
+        title,
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    }
+  }
+
   void signOutFromApp() {}
 }
