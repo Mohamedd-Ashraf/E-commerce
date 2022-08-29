@@ -9,7 +9,9 @@ class AuthController extends GetxController {
   bool visiblePassword = false;
   bool checkedBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
-  var displayNmae = "mo";
+  var displayName = "mo";
+  var displayUserPhoto = "";
+
 
   changeVisiblty() {
     visiblePassword = !visiblePassword;
@@ -27,7 +29,8 @@ class AuthController extends GetxController {
     required String email,
   }) async 
   {
-    try {
+    try 
+    {
       await auth
           .createUserWithEmailAndPassword(
         email: email,
@@ -76,7 +79,7 @@ class AuthController extends GetxController {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: passowrd)
-          .then((value) => displayNmae = auth.currentUser!.displayName!);
+          .then((value) => displayName = auth.currentUser!.displayName!);
       update();
       Get.to(MainScreen());
     } on FirebaseAuthException catch (error) {
@@ -108,31 +111,43 @@ class AuthController extends GetxController {
     }
   }
 
-Future<UserCredential> signInWithGoogle() async {
-  // Trigger the authentication flow
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  // Obtain the auth details from the request
-  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-  // Create a new credential
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
-
-  // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
   void LoginUsingFacebook() {}
+   void signinUsingGoogle() async{
+
+      try {
+     final GoogleSignInAccount? googleUser =  await GoogleSignIn().signIn().then((value) {
+      update();
+      Get.to(MainScreen());
+
+     });
+      displayName = googleUser!.displayName!;
+      displayUserPhoto = googleUser.photoUrl!;
+
+    } on FirebaseAuthException catch (error) {
+      String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
+
+    
+    }catch (error) {
+      Get.snackbar(
+        "Error!",
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Color.fromARGB(255, 164, 18, 18),
+        colorText: Colors.white,
+      );
+    }
+   }
   
   void resetPassword(String email) async
    {
     try 
     {
-      await auth.sendPasswordResetEmail(email: email);
-
+      await auth.sendPasswordResetEmail(email: email).then((value) {
+        
       update();
+      });
+
+      // update();
       // Get.back();
     } on FirebaseAuthException catch (error) {
       String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;
@@ -165,5 +180,9 @@ Future<UserCredential> signInWithGoogle() async {
     }
   }
 
-  void signOutFromApp() {}
+  void signOutFromApp() {
+    GoogleSignIn().signOut();
+    auth.signOut();
+
+  }
 }

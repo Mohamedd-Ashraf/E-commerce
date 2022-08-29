@@ -128,26 +128,23 @@ class loginScreen extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        GetBuilder<AuthController>(builder: (_){
-                          return     myButton(
-                          onPressed: () {
-                       
+                        GetBuilder<AuthController>(builder: (_) {
+                          return myButton(
+                            onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 String name = emailController.text.trim(),
                                     passowrd = passwordController.text;
-                                    
-                                controller.LoginUsingFireBase(passowrd:passowrd ,  email:name);
 
+                                controller.LoginUsingFireBase(
+                                    passowrd: passowrd, email: name);
                               }
-                            
                             },
-                         
-                          text: myText(
-                              text: "Log In",
-                              size: 18,
-                              color: darkModeBackGroundColor,
-                              fontWeight: FontWeight.bold),
-                        ) ;
+                            text: myText(
+                                text: "Log In",
+                                size: 18,
+                                color: darkModeBackGroundColor,
+                                fontWeight: FontWeight.bold),
+                          );
                         }),
                         SizedBox(
                           height: 20,
@@ -163,9 +160,14 @@ class loginScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell(
-                                onTap: (() {}),
-                                child: Image.asset("assets/images/google.png")),
+                            GetBuilder<AuthController>(builder: (_) {
+                              return InkWell(
+                                  onTap: (() {
+                                    controller.signinUsingGoogle();
+                                  }),
+                                  child:
+                                      Image.asset("assets/images/google.png"));
+                            }),
                             SizedBox(
                               width: 15,
                             ),
