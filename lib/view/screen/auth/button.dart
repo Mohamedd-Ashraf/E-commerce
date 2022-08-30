@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 import '../../../uitils/themes.dart';
 
@@ -17,7 +18,7 @@ class myButton extends StatelessWidget {
     return (ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary:darkModeWidgetColor,
+        primary:Get.isDarkMode? pinkClr:mainColor,
         minimumSize: Size(300, 50),
 
 

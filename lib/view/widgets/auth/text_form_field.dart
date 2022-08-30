@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 import '../../../uitils/themes.dart';
 
@@ -33,7 +34,7 @@ class AuthTextFormFiels extends StatelessWidget {
       obscureText: obscureText ?? false,
       validator: (value) => validatoion(value),
       decoration: InputDecoration(
-        fillColor:darkModeFormFieldColor,
+        fillColor:Get.isDarkMode? Colors.grey.shade400:Colors.grey.shade200,
         prefixIcon: prefixIcon,
         suffixIcon: surfixIcon,
         hintText: hintText,
@@ -41,11 +42,11 @@ class AuthTextFormFiels extends StatelessWidget {
             color: Colors.black.withOpacity(0.2), fontSize: 16, fontWeight: FontWeight.w500),
         filled: true,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: darkModeWidgetColor,),
+          borderSide: BorderSide(color: Get.isDarkMode? pinkClr:mainColor,),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: darkModeWidgetColor,),
+          borderSide: BorderSide(color: Get.isDarkMode? pinkClr:mainColor,),
           borderRadius: BorderRadius.circular(10),
         ),
         errorBorder: OutlineInputBorder(

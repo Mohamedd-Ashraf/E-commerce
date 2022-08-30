@@ -27,8 +27,8 @@ class signUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar:
-              AppBar(backgroundColor: darkModeBackGroundColor, elevation: 0),
-          backgroundColor: darkModeBackGroundColor,
+              AppBar(backgroundColor: Get.isDarkMode? darkGreyClr:Colors.white, elevation: 0),
+          backgroundColor: Get.isDarkMode? darkGreyClr:Colors.white,
           body: SingleChildScrollView(
             child: Column(children: [
               SizedBox(
@@ -71,7 +71,7 @@ class signUpScreen extends StatelessWidget {
                               return "Enter a Valid Name";
                           },
                           prefixIcon: Image.asset("assets/images/user.png",
-                              color: darkModeWidgetColor),
+                              color: Get.isDarkMode? pinkClr:mainColor),
                           hintText: "User Name",
                         ),
                         SizedBox(
@@ -86,7 +86,7 @@ class signUpScreen extends StatelessWidget {
                               return "Enter a Valid E-mail";
                           },
                           prefixIcon: Image.asset("assets/images/email.png",
-                              color: darkModeWidgetColor),
+                              color: Get.isDarkMode? pinkClr:mainColor),
                           hintText: "E-mail",
                         ),
                         SizedBox(
@@ -105,7 +105,7 @@ class signUpScreen extends StatelessWidget {
                                   return "Enter a Valid passowrd";
                               },
                               prefixIcon: Image.asset("assets/images/lock.png",
-                                  color: darkModeWidgetColor),
+                                  color: Get.isDarkMode? pinkClr:mainColor),
                               hintText: "Password",
                               obscureText: !controller.visiblePassword,
                               surfixIcon: IconButton(
@@ -116,7 +116,7 @@ class signUpScreen extends StatelessWidget {
                                     controller.visiblePassword
                                         ? Icons.visibility_off_outlined
                                         : Icons.visibility,
-                                    color: darkModeWidgetColor,
+                                    color: Get.isDarkMode? pinkClr:mainColor,
                                   )),
                             );
                           },
@@ -159,7 +159,7 @@ class signUpScreen extends StatelessWidget {
                               text: myText(
                                   text: "Sign Up",
                                   size: 18,
-                                  color: darkModeBackGroundColor,
+                                  color:Get.isDarkMode? darkGreyClr:Colors.white,
                                   fontWeight: FontWeight.bold));
                         })
                       ],

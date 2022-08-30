@@ -92,7 +92,7 @@ class welcomeScreen extends StatelessWidget {
                       text: myText(
                           text: "Get Started",
                           size: 20,
-                          color: darkModeBackGroundColor)),
+                          color: Get.isDarkMode? darkGreyClr:Colors.white)),
                 ),
                 SizedBox(
                   height: 30,

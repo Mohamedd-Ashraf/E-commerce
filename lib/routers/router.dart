@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/bindings/main_binding.dart';
 import 'package:e_commerce/view/screen/auth/forget_password.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
 
@@ -34,7 +35,7 @@ static const welcome = Routes.welcomeScreen;
     ,GetPage(
       name: Routes.mainScreen,
       page: () =>  MainScreen(),
-      binding: AuthBinding(),
+      bindings: [AuthBinding(),MainBinding()]
     )
   ];
 

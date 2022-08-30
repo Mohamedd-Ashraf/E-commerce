@@ -1,4 +1,5 @@
 import 'package:e_commerce/models/facebook_user.dart';
+import 'package:e_commerce/routers/router.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -11,8 +12,8 @@ class AuthController extends GetxController {
   bool visiblePassword = false;
   bool checkedBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
-  var displayName = "mo";
-  var displayUserPhoto = "";
+  String? displayName = "mo";
+  dynamic displayUserPhoto = "";
   FacebookUser? facebookmodel;
 
   changeVisiblty() {
@@ -39,8 +40,8 @@ class AuthController extends GetxController {
           .then((value) {
         auth.currentUser!.updateDisplayName(name);
       });
-      update();
-      Get.to(MainScreen());
+      update();    
+      Get.toNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
       String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
       if (error.code == 'weak-password') {
@@ -80,7 +81,8 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: passowrd)
           .then((value) => displayName = auth.currentUser!.displayName!);
       update();
-      Get.to(MainScreen());
+       Get.toNamed(Routes.mainScreen);
+
     } on FirebaseAuthException catch (error) {
       String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
 
@@ -118,10 +120,11 @@ class AuthController extends GetxController {
         facebookmodel = FacebookUser.fromJson(data);
         displayName = facebookmodel!.name!;
         update();
-        Get.to(MainScreen());
+        Get.toNamed(Routes.mainScreen);
+
       }
     } on Exception catch (error) {
-     Get.snackbar(
+      Get.snackbar(
         "Error!",
         error.toString(),
         snackPosition: SnackPosition.BOTTOM,
@@ -138,13 +141,17 @@ class AuthController extends GetxController {
       final GoogleSignInAccount? googleUser =
           await GoogleSignIn().signIn().then((value) {
         update();
-        Get.to(MainScreen());
+      Get.toNamed(Routes.mainScreen);
+
       });
-      displayName = googleUser!.displayName!;
-      displayUserPhoto = googleUser.photoUrl!;
+      displayName = googleUser?.displayName!;
+      displayUserPhoto = googleUser?.photoUrl!;
     } on FirebaseAuthException catch (error) {
       String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
     } catch (error) {
+      print("**********************************************");
+      print(error.toString());
+      print("**********************************************");
       Get.snackbar(
         "Error!",
         error.toString(),

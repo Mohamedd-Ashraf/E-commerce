@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class FooteContainer extends StatelessWidget {
   final String text;
@@ -24,7 +25,7 @@ class FooteContainer extends StatelessWidget {
       width: double.infinity,
       height: 80,
       decoration: BoxDecoration(
-        color: darkModeWidgetColor,
+        color: Get.isDarkMode? pinkClr:mainColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -37,14 +38,14 @@ class FooteContainer extends StatelessWidget {
           myText(
               text: text,
               size: 20,
-              color: darkModeBackGroundColor,
+              color: Get.isDarkMode? darkGreyClr:Colors.white,
               fontWeight: FontWeight.bold),
           TextButton(
             onPressed: onPressed,
             child: myText(
                 text: buttonText ?? "",
                 size: 20,
-                color: darkModeBackGroundColor,
+                color:Get.isDarkMode? darkGreyClr:Colors.white,
                 decoration: TextDecoration.underline,
                 fontWeight: FontWeight.bold),
           )

@@ -18,3 +18,23 @@ Color darkModeBackGroundColor = Get.isDarkMode? darkGreyClr:Colors.white;
 Color darkModeFontColor= Get.isDarkMode? Colors.white:darkGreyClr;
 Color darkModeWidgetColor = Get.isDarkMode? pinkClr:mainColor;
 Color darkModeFormFieldColor = Get.isDarkMode? Colors.grey.shade400:Colors.grey.shade200;
+
+
+class themeData{
+  static final light = ThemeData(
+    primaryColor: mainColor, 
+    backgroundColor:Colors.white, 
+    brightness: Brightness.light
+  );
+
+  static final dark = ThemeData(
+    primaryColor: pinkClr, 
+    backgroundColor:darkGreyClr, 
+    brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(color: pinkClr),
+
+    
+  );
+
+}
+

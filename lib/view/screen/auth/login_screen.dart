@@ -26,8 +26,8 @@ class loginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar:
-              AppBar(backgroundColor: darkModeBackGroundColor, elevation: 0),
-          backgroundColor: darkModeBackGroundColor,
+              AppBar(backgroundColor: Get.isDarkMode? darkGreyClr:Colors.white, elevation: 0),
+          backgroundColor: Get.isDarkMode? darkGreyClr:Colors.white,
           body: SingleChildScrollView(
             child: Column(children: [
               SizedBox(
@@ -69,7 +69,7 @@ class loginScreen extends StatelessWidget {
                               return "Enter a Valid E-mail";
                           },
                           prefixIcon: Image.asset("assets/images/email.png",
-                              color: darkModeWidgetColor),
+                              color: Get.isDarkMode? pinkClr:mainColor),
                           hintText: "E-mail",
                         ),
                         SizedBox(
@@ -88,7 +88,7 @@ class loginScreen extends StatelessWidget {
                                   return "Enter a Valid passowrd";
                               },
                               prefixIcon: Image.asset("assets/images/lock.png",
-                                  color: darkModeWidgetColor),
+                                  color: Get.isDarkMode? pinkClr:mainColor),
                               hintText: "Password",
                               obscureText: !controller.visiblePassword,
                               surfixIcon: IconButton(
@@ -99,7 +99,7 @@ class loginScreen extends StatelessWidget {
                                     controller.visiblePassword
                                         ? Icons.visibility_off_outlined
                                         : Icons.visibility,
-                                    color: darkModeWidgetColor,
+                                    color: Get.isDarkMode? pinkClr:mainColor,
                                   )),
                             );
                           },
@@ -117,7 +117,7 @@ class loginScreen extends StatelessWidget {
                                 child: myText(
                                     text: "Forget Password?",
                                     size: 14,
-                                    color: darkModeFontColor,
+                                    color: Get.isDarkMode? Colors.white:darkGreyClr,
                                     fontWeight: FontWeight.w600))),
                         /*    SizedBox(
                           height: 10,
@@ -142,7 +142,7 @@ class loginScreen extends StatelessWidget {
                             text: myText(
                                 text: "Log In",
                                 size: 18,
-                                color: darkModeBackGroundColor,
+                                color: Get.isDarkMode? darkGreyClr:Colors.white,
                                 fontWeight: FontWeight.bold),
                           );
                         }),
@@ -152,7 +152,7 @@ class loginScreen extends StatelessWidget {
                         myText(
                             text: "OR",
                             size: 14,
-                            color: darkModeFontColor,
+                            color: Get.isDarkMode? Colors.white:darkGreyClr,
                             fontWeight: FontWeight.w500),
                         SizedBox(
                           height: 20,

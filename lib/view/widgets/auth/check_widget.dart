@@ -38,7 +38,7 @@ class checkWidget extends StatelessWidget {
                 child:controller.checkedBox?
                     Image.asset(
                   'assets/images/check.png',
-                  color: darkModeWidgetColor,
+                  color: Get.isDarkMode? pinkClr:mainColor,
                 )
                 : Container(),
                 )),
@@ -51,7 +51,7 @@ class checkWidget extends StatelessWidget {
               myText(
                   text: text??"",
                   size: 16,
-                  color: darkModeFontColor,
+                  color: Get.isDarkMode? Colors.white:darkGreyClr,
                   fontWeight: FontWeight.normal),
               TextButton(
                 onPressed: () {},
@@ -59,7 +59,7 @@ class checkWidget extends StatelessWidget {
                     text: buttonText??"",
                     decoration: TextDecoration.underline,
                     size: 16,
-                    color: darkModeFontColor,
+                    color: Get.isDarkMode? Colors.white:darkGreyClr,
                     fontWeight: FontWeight.normal),
               )
             ],
