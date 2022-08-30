@@ -1,5 +1,7 @@
+import 'package:e_commerce/logic/controller/theme_controller.dart';
 import 'package:e_commerce/uitils/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'routers/router.dart';
 import 'view/screen/welcome_screen.dart';
@@ -9,6 +11,7 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await GetStorage.init(); 
 
   runApp(const MyApp());
 }
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: themeData.light,
+      themeMode: ThemeController().themeDataGet,
       darkTheme: themeData.dark,
       // home: const welcomeScreen(),
       initialRoute: Routes.welcomeScreen,

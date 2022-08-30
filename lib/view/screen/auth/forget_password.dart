@@ -21,14 +21,14 @@ class forgetPassowrd extends StatelessWidget {
   Widget build(BuildContext context) {
     return (SafeArea(
         child: Scaffold(
-      backgroundColor: Get.isDarkMode? darkGreyClr:Colors.white,
+      backgroundColor: darkModeBackGroundColor,
       appBar: AppBar(
-        backgroundColor:Get.isDarkMode? darkGreyClr:Colors.white,
+        backgroundColor: darkModeBackGroundColor,
         elevation: 0,
         title: myText(
             text: "Forget Password?",
             size: 25,
-            color: Get.isDarkMode? pinkClr:mainColor,
+            color: darkModeWidgetColor,
             fontWeight: FontWeight.w500),
         centerTitle: true,
       ),
@@ -47,7 +47,7 @@ class forgetPassowrd extends StatelessWidget {
                         }),
                         icon: Icon(
                           Icons.close_rounded,
-                          color: Get.isDarkMode? Colors.white:darkGreyClr,
+                          color: darkModeFontColor,
                         )),
                   ),
                   SizedBox(
@@ -56,7 +56,7 @@ class forgetPassowrd extends StatelessWidget {
                   Text(
                     "If you want to recover your account , then please provide your E-Mail Below",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Get.isDarkMode? Colors.white:darkGreyClr),
+                    style: TextStyle(color: darkModeFontColor),
                   ),
                   SizedBox(
                     height: 20,
@@ -77,7 +77,7 @@ class forgetPassowrd extends StatelessWidget {
                         return "Enter a Valid Name";
                     },
                     prefixIcon: Image.asset("assets/images/email.png",
-                        color: Get.isDarkMode? pinkClr:mainColor),
+                        color: darkModeWidgetColor),
                     hintText: "E-mail",
                   ),
                   SizedBox(
@@ -91,7 +91,7 @@ class forgetPassowrd extends StatelessWidget {
                       text: myText(
                           text: "Send",
                           size: 18,
-                          color: Get.isDarkMode? darkGreyClr:Colors.white));
+                          color: darkModeBackGroundColor));
                   })
                 ],
               ),
