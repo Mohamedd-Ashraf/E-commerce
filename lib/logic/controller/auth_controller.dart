@@ -3,6 +3,7 @@ import 'package:e_commerce/routers/router.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class AuthController extends GetxController {
   bool checkedBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
   String? displayName = "mo";
-  dynamic displayUserPhoto = "";
+  dynamic? displayUserPhoto = "";
+  GetStorage loginBox = GetStorage();
   FacebookUser? facebookmodel;
 
   changeVisiblty() {
@@ -40,7 +42,8 @@ class AuthController extends GetxController {
           .then((value) {
         auth.currentUser!.updateDisplayName(name);
       });
-      update();    
+      loginBox.write("loggined", true);
+      update();
       Get.toNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
       String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
@@ -80,9 +83,10 @@ class AuthController extends GetxController {
       await auth
           .signInWithEmailAndPassword(email: email, password: passowrd)
           .then((value) => displayName = auth.currentUser!.displayName!);
-      update();
-       Get.toNamed(Routes.mainScreen);
+      loginBox.write("loggined", true);
 
+      update();
+      Get.toNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
       String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
 
@@ -119,9 +123,10 @@ class AuthController extends GetxController {
         final data = await FacebookAuth.instance.getUserData();
         facebookmodel = FacebookUser.fromJson(data);
         displayName = facebookmodel!.name!;
+        loginBox.write("loggined", true);
+
         update();
         Get.toNamed(Routes.mainScreen);
-
       }
     } on Exception catch (error) {
       Get.snackbar(
@@ -140,9 +145,10 @@ class AuthController extends GetxController {
     try {
       final GoogleSignInAccount? googleUser =
           await GoogleSignIn().signIn().then((value) {
-        update();
-      Get.toNamed(Routes.mainScreen);
+        loginBox.write("loggined", true);
 
+        update();
+        Get.toNamed(Routes.mainScreen);
       });
       displayName = googleUser?.displayName!;
       displayUserPhoto = googleUser?.photoUrl!;
@@ -201,7 +207,25 @@ class AuthController extends GetxController {
   }
 
   void signOutFromApp() {
-    GoogleSignIn().signOut();
-    auth.signOut();
+    try {
+      GoogleSignIn().signOut();
+      auth.signOut();
+      FacebookAuth.i.logOut();
+      displayName = '';
+      displayUserPhoto = "";
+      loginBox.remove("loggined");
+
+      update();
+      Get.offNamed(Routes.welcomeScreen);
+    } on Exception catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+      // TODO
+    }
   }
 }
