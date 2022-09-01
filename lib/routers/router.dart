@@ -1,4 +1,5 @@
 import 'package:e_commerce/logic/bindings/main_binding.dart';
+import 'package:e_commerce/logic/bindings/productt_binding.dart';
 import 'package:e_commerce/view/screen/auth/forget_password.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
 
@@ -36,7 +37,7 @@ static const main = Routes.mainScreen;
     ,GetPage(
       name: Routes.mainScreen,
       page: () =>  MainScreen(),
-      bindings: [AuthBinding(),MainBinding()]
+      bindings: [AuthBinding(),MainBinding(),ProductBinding()]
     )
   ];
 
