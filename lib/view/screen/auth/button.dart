@@ -20,7 +20,7 @@ class myButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary:Get.isDarkMode? pinkClr:mainColor,
         minimumSize: Size(300, 50),
-
+        
 
       ),
       child: text,

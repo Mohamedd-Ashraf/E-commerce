@@ -10,7 +10,7 @@ import '../../models/product_model.dart';
 
 class FavouriteScreen extends StatelessWidget {
    FavouriteScreen({Key? key}) : super(key: key);
-    final controller = Get.find<ProductController>();
+    final controller = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

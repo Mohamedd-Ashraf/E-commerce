@@ -1,6 +1,7 @@
 import 'package:e_commerce/logic/controller/main_controller.dart';
 import 'package:e_commerce/logic/controller/theme_controller.dart';
 import 'package:e_commerce/uitils/themes.dart';
+import 'package:e_commerce/view/screen/cart_screen.dart';
 import 'package:e_commerce/view/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -28,7 +29,8 @@ class MainScreen extends StatelessWidget  {
           actions: [
             IconButton(
                 onPressed: () {
-                 ThemeController().changeTheme();
+                //  ThemeController().changeTheme();
+                Get.to(CartScreen());
                 
                 },
                 icon: Image.asset('assets/images/shop.png'))

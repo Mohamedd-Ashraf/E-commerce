@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/controller/cart_controller.dart';
 import 'package:e_commerce/logic/controller/product_cotroller.dart';
 import 'package:e_commerce/models/product_model.dart';
 import 'package:e_commerce/uitils/themes.dart';
@@ -12,6 +13,7 @@ import '../my_text.dart';
 class MyCardItem extends StatelessWidget {
   MyCardItem({Key? key}) : super(key: key);
   final controller = Get.find<ProductController>();
+  final cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +83,9 @@ class MyCardItem extends StatelessWidget {
                           : Icon(Icons.favorite_outline),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        cartController.addProductToCart(product);
+                      },
                       icon: Icon(Icons.add),
                     ),
                   ],
