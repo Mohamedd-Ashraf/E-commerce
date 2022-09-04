@@ -4,8 +4,8 @@ import '../controller/auth_controller.dart';
 
 class AuthBinding extends Bindings {
   @override
-  void dependencies() {
-   Get.put(AuthController());
+  void dependencies() async {
+  await Get.put(AuthController());
 
 
   }

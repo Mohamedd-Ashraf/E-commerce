@@ -37,7 +37,7 @@ static const main = Routes.mainScreen;
     ,GetPage(
       name: Routes.mainScreen,
       page: () =>  MainScreen(),
-      bindings: [AuthBinding(),MainBinding(),ProductBinding()]
+      bindings: [AuthBinding(),mainScreenbning(),ProductBinding()]
     )
   ];
 

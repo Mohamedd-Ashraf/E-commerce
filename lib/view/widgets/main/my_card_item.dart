@@ -1,4 +1,5 @@
 import 'package:e_commerce/logic/controller/product_cotroller.dart';
+import 'package:e_commerce/models/product_model.dart';
 import 'package:e_commerce/uitils/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +32,11 @@ class MyCardItem extends StatelessWidget {
                   crossAxisSpacing: 6.0),
               itemBuilder: (context, index) {
                 return buildCardItems(
-                  image: controller.productsList[index].image,
-                  price: controller.productsList[index].price,
-                  rate: controller.productsList[index].rating.rate
-                );
+                    // image: controller.productsList[index].image,
+                    // price: controller.productsList[index].price,
+                    // rate: controller.productsList[index].rating.rate,
+                    product: controller.productsList[index]
+                    );
               }),
         );
         ;
@@ -43,9 +45,10 @@ class MyCardItem extends StatelessWidget {
   }
 
   Widget buildCardItems({
-    required String image,
-    required double price,
-    required double rate,
+    // required String image,
+    // required double price,
+    // required double rate,
+    required Product product
   }) {
     return Padding(
       padding: const EdgeInsets.all(5),
@@ -63,19 +66,27 @@ class MyCardItem extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.favorite_outline),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.favorite_outline),
-                ),
-              ],
-            ),
+            Obx((() => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        controller.addFavourate(product.id);
+                      },
+                      icon: controller.isFavourate(product.id)
+                          ? Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            )
+                          : Icon(Icons.favorite_outline),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.add),
+                    ),
+                  ],
+                ))),
+           
             Container(
               width: double.infinity,
               height: 140,
@@ -84,8 +95,8 @@ class MyCardItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Image.network(
-                image,
-                fit: BoxFit.fitHeight,
+                product.image,
+                fit: BoxFit.fill,
               ),
             ),
             Padding(
@@ -94,7 +105,7 @@ class MyCardItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   myText(
-                    text: "$price\$",
+                    text: "${product.price}\$",
                     size: 15,
                     color: null,
                   ),
@@ -115,7 +126,7 @@ class MyCardItem extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 1),
                               child:
-                                  myText(text: "$rate", size: 15, color: null),
+                                  myText(text: "${product.rating.rate}", size: 15, color: null),
                             ),
                             Icon(
                               Icons.star,

@@ -7,10 +7,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatelessWidget  {
   MainScreen({Key? key}) : super(key: key);
+//TODO  look at this fckn useless change from  final controller = Get.find<MainController>();
 
-  final controller = Get.find<MainController>();
+  final controller =  Get.put(mainScrenController());
 
   @override
   Widget build(BuildContext context) {

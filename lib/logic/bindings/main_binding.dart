@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 
 
-class MainBinding extends Bindings {
+class mainScreenbning extends Bindings {
 
 
   @override
   void dependencies() async {
      WidgetsFlutterBinding.ensureInitialized();
 
-  await Get.put(MainController());
+  await Get.put(mainScrenController());
 
 
   }

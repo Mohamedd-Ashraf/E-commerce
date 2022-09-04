@@ -5,7 +5,7 @@ import 'package:e_commerce/view/screen/mainScreen.dart';
 import 'package:e_commerce/view/screen/setting_screen.dart';
 import 'package:get/get.dart';
 
-class MainController extends GetxController {
+class mainScrenController extends GetxController {
   
   RxInt currentIndex = 0.obs ;
 
