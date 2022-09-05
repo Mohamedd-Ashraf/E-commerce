@@ -1,11 +1,19 @@
+import 'package:e_commerce/models/product_model.dart';
 import 'package:e_commerce/uitils/themes.dart';
+import 'package:e_commerce/view/screen/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/controller/cart_controller.dart';
+
 class CartItem extends StatelessWidget {
-  const CartItem({Key? key}) : super(key: key);
+  final Product product;
+  int index;
+  final controller = Get.find<CartController>();
+  CartItem({Key? key, required this.product, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,9 @@ class CartItem extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Get.isDarkMode?pinkClr.withOpacity(0.5):Colors.greenAccent.withOpacity(0.8),
+          color: Get.isDarkMode
+              ? pinkClr.withOpacity(0.5)
+              : Colors.greenAccent.withOpacity(0.8),
         ),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +43,7 @@ class CartItem extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: Image.network(
-                      "https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/305439996_3277203552497233_4715805898959689204_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=VnWp-lnNNuEAX8BqI7i&_nc_ht=scontent.fcai19-4.fna&oh=00_AT-g9SXD0zgbNamaXW-GL9yYGzLwmGH-pFQzGEE1goRoyw&oe=631A1D55",
+                      product.image,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -50,11 +60,11 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                           SizedBox(
+                        SizedBox(
                           height: 15,
                         ),
                         Text(
-                          "Titlgsdgsdfgsdfgsdfgsdfgsdfgsdfgssssssssse",
+                          product.title,
                           maxLines: 1,
                           style: TextStyle(
                               overflow: TextOverflow.ellipsis,
@@ -65,7 +75,7 @@ class CartItem extends StatelessWidget {
                           height: 50,
                         ),
                         Text(
-                          "\$140",
+                          "\$${controller.productTotalPrice[index].toStringAsFixed(2)}",
                           maxLines: 1,
                           style: TextStyle(
                               overflow: TextOverflow.ellipsis,
@@ -81,7 +91,9 @@ class CartItem extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.reduceProductInCart(product);
+                        },
                         icon: Icon(
                           Icons.remove_circle,
                           size: 27,
@@ -91,7 +103,7 @@ class CartItem extends StatelessWidget {
                         width: 3,
                       ),
                       Text(
-                        "1",
+                        "${controller.productsMap.values.toList()[index]}",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
@@ -99,7 +111,9 @@ class CartItem extends StatelessWidget {
                         width: 3,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.addProductToCart(product);
+                        },
                         icon: Icon(
                           Icons.add_circle,
                           size: 27,
@@ -111,7 +125,9 @@ class CartItem extends StatelessWidget {
                     height: 15,
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.removeOneProductsCart(product);
+                      },
                       icon: Icon(
                         Icons.delete,
                         size: 30,

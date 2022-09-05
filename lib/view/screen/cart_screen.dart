@@ -1,5 +1,4 @@
-
-
+import 'package:e_commerce/logic/controller/cart_controller.dart';
 import 'package:e_commerce/uitils/themes.dart';
 import 'package:e_commerce/view/screen/auth/button.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
@@ -13,8 +12,8 @@ import 'package:get/get.dart';
 import '../widgets/cart/cart_widget.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
-
+  CartScreen({Key? key}) : super(key: key);
+  final controller = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +27,10 @@ class CartScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {}, icon: Icon(Icons.remove_shopping_cart_outlined))
+              onPressed: () {
+                controller.clearAllProductsCart();
+              },
+              icon: Icon(Icons.remove_shopping_cart_outlined))
         ],
       ),
       body: showCartItems(),
@@ -103,82 +105,95 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget showCartItems() {
-    return SingleChildScrollView(
-      child: Column(children: [
-        SizedBox(
-          height: 600,
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return CartItem();
-              },
-              separatorBuilder: (context, index) {
-                return Container();
-              },
-              itemCount: 10),
-        ),
-        Card(
-
-          elevation: 10,
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
+    return Obx(() {
+      if (controller.productsMap.isEmpty) {
+        return ShowNoItemsInCart();
+      } else {
+        return SingleChildScrollView(
+          child: Column(children: [
+            SizedBox(
+              height: 600,
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return CartItem(
+                      index: index,
+                      product: controller.productsMap.keys.toList()[index],
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Container();
+                  },
+                  itemCount: controller.productsMap.length),
+            ),
+            Card(
+              elevation: 10,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Total",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                      ),
+                    Column(
+                      children: [
+                        Text(
+                          "Total",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "${controller.totalProductsPrice}",
+                          style: TextStyle(
+                              fontSize: 23, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 5,
+                      width: 20,
                     ),
-                    Text(
-                      "\$1900",
-                      style:
-                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Text(
+                            "Check Out",
+                            style: TextStyle(fontSize: 28),
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          Icon(
+                            Icons.shopping_cart,
+                            size: 28,
+                          )
+                        ],
+                      ),
+                      style: ButtonStyle(
+                          overlayColor: MaterialStateProperty.all<Color>(
+                              Get.isDarkMode ? mainColor : pinkClr),
+                          fixedSize:
+                              MaterialStateProperty.all<Size>(Size(220, 50)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Get.isDarkMode ? pinkClr : mainColor),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(15)))),
+                    )
                   ],
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Text(
-                        "Check Out",
-                        style: TextStyle(fontSize: 28),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.shopping_cart,
-                        size: 28,
-                      )
-                    ],
-                  ),
-                  style: ButtonStyle(
-                     overlayColor: MaterialStateProperty.all<Color>(
-                      Get.isDarkMode ? mainColor : pinkClr),
-                    fixedSize:MaterialStateProperty.all<Size>(Size(220, 50)) ,
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Get.isDarkMode ? pinkClr : mainColor),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius:BorderRadius.circular(15) )
-                        )
-
-                  ),
-                )
-              ],
-            ),
-          ),
-        )
-      ]),
-    );
+              ),
+            )
+          ]),
+        );
+      }
+    });
   }
+
+// Widget cartBody() {
+
+// }
 }

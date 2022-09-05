@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/bindings/cart_binding.dart';
 import 'package:e_commerce/logic/bindings/main_binding.dart';
 import 'package:e_commerce/logic/bindings/productt_binding.dart';
 import 'package:e_commerce/logic/controller/product_cotroller.dart';
@@ -40,7 +41,7 @@ static const main = Routes.mainScreen;
     ,GetPage(
       name: Routes.cartScreen,
       page: () =>  CartScreen(),
-      bindings:[AuthBinding(),ProductBinding()],
+      bindings:[AuthBinding(),ProductBinding(),CartBinding()],
     )
     ,GetPage(
       name: Routes.mainScreen,
