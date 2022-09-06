@@ -26,21 +26,33 @@ class MyCardItem extends StatelessWidget {
         );
       } else {
         return Expanded(
-          child: GridView.builder(
-              itemCount: controller.productsList.length,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 0.8,
-                  mainAxisSpacing: 9.0,
-                  crossAxisSpacing: 6.0),
-              itemBuilder: (context, index) {
-                return buildCardItems(
-                    // image: controller.productsList[index].image,
-                    // price: controller.productsList[index].price,
-                    // rate: controller.productsList[index].rating.rate,
-                    product: controller.productsList[index]
-                    );
-              }),
+          child: controller.searchList.isEmpty &&
+                  controller.searchTextController.text.isNotEmpty
+              ? Get.isDarkMode
+                  ? Image.asset("assets/images/search_empty_dark.png")
+                  : Image.asset("assets/images/search_empry_light.png")
+              : GridView.builder(
+                  itemCount: controller.searchList.isEmpty
+                      ? controller.productsList.length
+                      : controller.searchList.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    childAspectRatio: 0.8,
+                    mainAxisSpacing: 9.0,
+                    crossAxisSpacing: 6.0,
+                    maxCrossAxisExtent: 200,
+                  ),
+                  itemBuilder: (context, index) {
+                    if (controller.searchList.isEmpty) {
+                      return  buildCardItems(
+                            product: controller.productsList[index],
+                      );
+                    } else {
+                      return buildCardItems(
+                            product: controller.searchList[index],
+                      );
+                    }
+                  },
+                ),
         );
         ;
       }
@@ -48,9 +60,7 @@ class MyCardItem extends StatelessWidget {
   }
 
   Widget buildCardItems({
-    // required String image,
-    // required double price,
-    // required double rate,
+
     required Product product
   }) {
     return Padding(
