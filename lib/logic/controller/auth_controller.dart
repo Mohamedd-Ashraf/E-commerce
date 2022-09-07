@@ -13,10 +13,23 @@ class AuthController extends GetxController {
   bool visiblePassword = false;
   bool checkedBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
-  String? displayName = "mo";
-  dynamic? displayUserPhoto = "";
+  var displayUserName = "mo".obs;
+  var displayUserPhoto = "".obs;
+  var displayUserEmail = ''.obs;
   GetStorage loginBox = GetStorage();
   FacebookUser? facebookmodel;
+  User? get userProfiloe => auth.currentUser;
+
+  @override
+  void onInit() {
+    displayUserName.value =
+        (userProfiloe != null ? userProfiloe!.displayName : "")!;
+    displayUserPhoto.value =
+        (userProfiloe != null ? userProfiloe!.photoURL : "")!;
+    displayUserEmail.value = (userProfiloe != null ? userProfiloe!.email : "")!;
+
+    super.onInit();
+  }
 
   changeVisiblty() {
     visiblePassword = !visiblePassword;
@@ -82,7 +95,8 @@ class AuthController extends GetxController {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: passowrd)
-          .then((value) => displayName = auth.currentUser!.displayName!);
+          .then((value) =>
+              displayUserName.value = auth.currentUser!.displayName!);
       loginBox.write("loggined", true);
 
       update();
@@ -122,7 +136,7 @@ class AuthController extends GetxController {
       if (loginResult.status == LoginStatus.success) {
         final data = await FacebookAuth.instance.getUserData();
         facebookmodel = FacebookUser.fromJson(data);
-        displayName = facebookmodel!.name!;
+        displayUserName.value = facebookmodel!.name!;
         loginBox.write("loggined", true);
 
         update();
@@ -142,18 +156,26 @@ class AuthController extends GetxController {
   }
 
   void signinUsingGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser =
-          await GoogleSignIn().signIn().then((value) {
-        loginBox.write("loggined", true);
+       try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      displayUserName.value = googleUser!.displayName!;
+      displayUserPhoto.value = googleUser.photoUrl!;
+      displayUserEmail.value = googleUser.email;
 
-        update();
-        Get.toNamed(Routes.mainScreen);
-      });
-      displayName = googleUser?.displayName!;
-      displayUserPhoto = googleUser?.photoUrl!;
-    } on FirebaseAuthException catch (error) {
-      String tittle = error.code.replaceAll(RegExp('-'), ' '), mesaage = "";
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken,
+      );
+
+      await auth.signInWithCredential(credential);
+
+
+      loginBox.write("loggined", true);
+      update();
+
+      Get.offNamed(Routes.mainScreen);
     } catch (error) {
       print("**********************************************");
       print(error.toString());
@@ -211,8 +233,8 @@ class AuthController extends GetxController {
       GoogleSignIn().signOut();
       auth.signOut();
       FacebookAuth.i.logOut();
-      displayName = '';
-      displayUserPhoto = "";
+      displayUserName.value = '';
+      displayUserPhoto.value = "";
       loginBox.remove("loggined");
 
       update();
