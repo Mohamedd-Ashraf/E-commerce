@@ -9,6 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import '../widgets/setting/darkmode_widget.dart';
+import '../widgets/setting/language.dart';
 import '../widgets/setting/logout_wedgit.dart';
 import '../widgets/setting/profile_widget.dart';
 
@@ -48,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // LanguageWidget(),
+          LanguageWidget(),
           const SizedBox(
             height: 20,
           ),

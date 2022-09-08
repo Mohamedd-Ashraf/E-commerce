@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'language/localiztion.dart';
 import 'routers/router.dart';
+import 'uitils/my_string.dart';
 import 'view/screen/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
       theme: themeData.light,
       themeMode: ThemeController().themeDataGet,
       darkTheme: themeData.dark,
+        locale: Locale(GetStorage().read<String>('lang').toString()),
+      translations: LocaliztionApp(),
+      fallbackLocale: Locale(ene),
       // home: const welcomeScreen(),
       initialRoute: FirebaseAuth.instance.currentUser!=null || GetStorage().read<bool>("loggined")==true ? AppRoutes.main:AppRoutes.welcome,
       getPages: AppRoutes.routes,
