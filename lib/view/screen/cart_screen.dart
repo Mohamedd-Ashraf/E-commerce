@@ -1,7 +1,9 @@
 import 'package:e_commerce/logic/controller/cart_controller.dart';
+import 'package:e_commerce/routers/router.dart';
 import 'package:e_commerce/uitils/themes.dart';
 import 'package:e_commerce/view/screen/auth/button.dart';
 import 'package:e_commerce/view/screen/mainScreen.dart';
+import 'package:e_commerce/view/screen/payment_screen.dart';
 import 'package:e_commerce/view/widgets/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -154,7 +156,9 @@ class CartScreen extends StatelessWidget {
                       width: 20,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(PayMentScreen());
+                      },
                       child: Row(
                         children: [
                           Text(

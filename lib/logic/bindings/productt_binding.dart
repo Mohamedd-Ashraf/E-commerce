@@ -10,6 +10,7 @@ class ProductBinding extends Bindings {
   await  Get.put(ProductController());
   Get.lazyPut(() => CartController());
   Get.put(CategoryController());
+  // Get.put(PaymCo());
 
   }
   
