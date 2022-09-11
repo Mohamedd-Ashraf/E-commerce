@@ -45,7 +45,7 @@ class MainScreen extends StatelessWidget {
                       }),
                 ))
           ],
-          title: Text("El Zreebah Shop"),
+          title: Text("El Shop"),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [

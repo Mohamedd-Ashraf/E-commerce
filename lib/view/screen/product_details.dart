@@ -16,17 +16,22 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.theme.backgroundColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ImagesSlider(
-                image: product.image,
-              ),
-              ClothesInfo(product:product),SizeList(),AddCart( productModels: product)
-            ],
+    return Hero(
+      tag: product.id,
+      child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+    
+                  ImagesSlider(
+                    image: product.image,
+                  ),
+                
+                ClothesInfo(product:product),SizeList(),AddCart( productModels: product)
+              ],
+            ),
           ),
         ),
       ),
