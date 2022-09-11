@@ -12,10 +12,10 @@ class CategoryController extends GetxController {
   var isAllCategory = false.obs;
 
   List<String> imageCategory = [
-    "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
-    "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
-    "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+    "https://www.ieee.org/content/dam/ieee-org/ieee/web/org/homecarousel/hero/homepage-hero-aug-2022.jpg",
+    "https://www.hazoorilaljewellers.com/wp-content/uploads/2022/02/01-1.jpg",
+    "https://img.freepik.com/free-photo/young-handsome-man-choosing-clothes-shop_1303-19720.jpg?w=1060&t=st=1662935924~exp=1662936524~hmac=ad09f7d010f70d1d1c6227b12a8d79de4d1fd0483156902e7ccfcc4846037651",
+    "https://i.ytimg.com/vi/19X4olX3d1Q/maxresdefault.jpg",
   ].obs;
 
   @override
