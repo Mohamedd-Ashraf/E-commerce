@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
     _scrollController = ScrollController();
     return Container(
       child: NestedScrollView(
-          controller: _scrollController,
+          // controller: _scrollController,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverOverlapAbsorber(
@@ -36,25 +36,18 @@ class HomeScreen extends StatelessWidget {
                   actions: [
                     IconButton(
                         onPressed: () {
-                          if (_isAppBarExpanded) {
-                            _scrollController!.animateTo(
-                                _scrollController!.position.extentInside,
-                                duration: Duration(milliseconds: 1300),
-                                curve: Curves.decelerate);
-
-                          
-                          } else {
-                            _scrollController!.animateTo(
-                              _scrollController!.position.maxScrollExtent,
-                              duration: Duration(milliseconds: 1300),
-                              curve: Curves.decelerate,
-                            );
-                              // controller.gridScrollController!.animateTo(
-                              //   controller.gridScrollController!.position
-                              //       .extentInside,
-                              //   duration: Duration(milliseconds: 1300),
-                              //   curve: Curves.decelerate);
-                          }
+                          // if (_isAppBarExpanded) {
+                          //   _scrollController!.animateTo(
+                          //       _scrollController!.position.extentInside,
+                          //       duration: Duration(milliseconds: 1300),
+                          //       curve: Curves.decelerate);
+                          // } else {
+                          //   _scrollController!.animateTo(
+                          //     _scrollController!.position.maxScrollExtent,
+                          //     duration: Duration(milliseconds: 1300),
+                          //     curve: Curves.decelerate,
+                          //   );
+                          // }
                         },
                         icon: Icon(
                             _isAppBarExpanded ? Icons.search : Icons.close))

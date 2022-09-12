@@ -55,7 +55,7 @@ class AuthController extends GetxController {
           .then((value) {
         auth.currentUser!.updateDisplayName(name);
       });
-      loginBox.write("loggined", true);
+     this.checkedBox? loginBox.write("loggined", true): loginBox.remove("loggined");;
       update();
       Get.toNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
@@ -97,7 +97,8 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: passowrd)
           .then((value) =>
               displayUserName.value = auth.currentUser!.displayName!);
-      loginBox.write("loggined", true);
+           this.checkedBox? loginBox.write("loggined", true): loginBox.remove("loggined");;
+
 
       update();
       Get.toNamed(Routes.mainScreen);
@@ -137,7 +138,9 @@ class AuthController extends GetxController {
         final data = await FacebookAuth.instance.getUserData();
         facebookmodel = FacebookUser.fromJson(data);
         displayUserName.value = facebookmodel!.name!;
-        loginBox.write("loggined", true);
+              this.checkedBox? loginBox.write("loggined", true): loginBox.remove("loggined");;
+
+
 
         update();
         Get.toNamed(Routes.mainScreen);
@@ -172,7 +175,9 @@ class AuthController extends GetxController {
       await auth.signInWithCredential(credential);
 
 
-      loginBox.write("loggined", true);
+        this.checkedBox? loginBox.write("loggined", true): loginBox.remove("loggined");;
+
+
       update();
 
       Get.offNamed(Routes.mainScreen);

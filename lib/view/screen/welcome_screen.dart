@@ -25,7 +25,7 @@ class welcomeScreen extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              "assets/images/background.png",
+              "assets/images/Zreebah.jpg",
               fit: BoxFit.cover,
             ),
           ),
@@ -36,53 +36,54 @@ class welcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  height: 60,
-                  width: 190,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Center(
-                    child: myText(
-                        text: "Welcome",
-                        size: 35,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 60,
-                  width: 230,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      myText(
-                          text: "Asroo",
-                          size: 35,
-                          color: mainColor,
-                          fontWeight: FontWeight.bold),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      myText(
-                          text: "Shop",
-                          size: 35,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold)
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 180,
-                ),
+                SizedBox(height: 250,),
+                // Container(
+                //   height: 60,
+                //   width: 190,
+                //   // decoration: BoxDecoration(
+                //   //   color: Colors.black.withOpacity(0.3),
+                //   //   borderRadius: BorderRadius.circular(5),
+                //   // ),
+                //   child: Center(
+                //     child: myText(
+                //         text: "Welcome",
+                //         size: 35,
+                //         color: Colors.white,
+                //         fontWeight: FontWeight.bold),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                // Container(
+                //   height: 60,
+                //   width: 230,
+                //   decoration: BoxDecoration(
+                //     color: Colors.black.withOpacity(0.3),
+                //     borderRadius: BorderRadius.circular(5),
+                //   ),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       myText(
+                //           text: "Zreebah",
+                //           size: 35,
+                //           color: mainColor,
+                //           fontWeight: FontWeight.bold),
+                //       SizedBox(
+                //         width: 7,
+                //       ),
+                //       myText(
+                //           text: "Shop",
+                //           size: 35,
+                //           color: Colors.white,
+                //           fontWeight: FontWeight.bold)
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 180,
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 80),
                   child: myButton(
