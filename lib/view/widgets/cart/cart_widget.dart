@@ -11,7 +11,8 @@ import '../../../logic/controller/cart_controller.dart';
 class CartItem extends StatelessWidget {
   final Product product;
   int index;
-  final controller = Get.find<CartController>();
+  final controller = Get.put(CartController());
+
   CartItem({Key? key, required this.product, required this.index})
       : super(key: key);
 

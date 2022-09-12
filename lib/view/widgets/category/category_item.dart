@@ -17,9 +17,9 @@ class CategoryItems extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final controller = Get.find<ProductController>();
+  final controller = Get.put(ProductController());
 
-  final cartController = Get.find<CartController>();
+  final cartController = Get.put(CartController());
 
   final categoryController =   Get.put(CategoryController());
 

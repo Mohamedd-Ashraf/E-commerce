@@ -41,12 +41,19 @@ class HomeScreen extends StatelessWidget {
                                 _scrollController!.position.extentInside,
                                 duration: Duration(milliseconds: 1300),
                                 curve: Curves.decelerate);
+
+                          
                           } else {
                             _scrollController!.animateTo(
                               _scrollController!.position.maxScrollExtent,
                               duration: Duration(milliseconds: 1300),
                               curve: Curves.decelerate,
                             );
+                              // controller.gridScrollController!.animateTo(
+                              //   controller.gridScrollController!.position
+                              //       .extentInside,
+                              //   duration: Duration(milliseconds: 1300),
+                              //   curve: Curves.decelerate);
                           }
                         },
                         icon: Icon(

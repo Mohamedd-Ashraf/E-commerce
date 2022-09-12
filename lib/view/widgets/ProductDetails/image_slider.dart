@@ -25,7 +25,8 @@ class ImagesSlider extends StatefulWidget {
 class _ImagesSliderState extends State<ImagesSlider> {
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
-  final cartController = Get.find<CartController>();
+  final cartController = Get.put(CartController());
+
   final List<Color> colorSelected = [
     kCOlor1,
     kCOlor2,

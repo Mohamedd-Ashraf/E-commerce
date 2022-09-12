@@ -7,7 +7,7 @@ import '../../../logic/controller/product_cotroller.dart';
 
 class SerachBarWidget extends StatelessWidget {
   SerachBarWidget({Key? key}) : super(key: key);
-  final controller = Get.find<ProductController>();
+  final controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {

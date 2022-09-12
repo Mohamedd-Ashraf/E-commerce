@@ -41,17 +41,17 @@ static const main = Routes.mainScreen;
     ,GetPage(
       name: Routes.signUpScreen,
       page: () =>  signUpScreen(),
-      binding: AuthBinding(),
+      // binding: AuthBinding(),
     )
     ,GetPage(
       name: Routes.cartScreen,
       page: () =>  CartScreen(),
-      bindings:[AuthBinding(),ProductBinding(),CartBinding()],
+      // bindings:[AuthBinding(),ProductBinding(),CartBinding()],
     )
     ,GetPage(
       name: Routes.mainScreen,
       page: () =>  MainScreen(),
-      bindings: [AuthBinding(),mainScreenbning(),ProductBinding()]
+      // bindings: [AuthBinding(),mainScreenbning(),ProductBinding()]
     )
   ];
 

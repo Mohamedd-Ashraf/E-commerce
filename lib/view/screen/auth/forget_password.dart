@@ -14,7 +14,7 @@ import '../../../uitils/my_string.dart';
 class forgetPassowrd extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   TextEditingController email = new TextEditingController();
-  final controller = Get.find<AuthController>();
+  final controller = Get.put(AuthController());
   forgetPassowrd({Key? key}) : super(key: key);
 
   @override

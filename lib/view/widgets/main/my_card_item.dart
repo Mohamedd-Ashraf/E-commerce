@@ -13,8 +13,9 @@ import '../my_text.dart';
 
 class MyCardItem extends StatelessWidget {
   MyCardItem({Key? key}) : super(key: key);
-  final controller = Get.find<ProductController>();
+  final controller = Get.put(ProductController());
   final cartController = Get.put(CartController());
+  //  static ScrollController? gridScrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -25,35 +26,39 @@ class MyCardItem extends StatelessWidget {
               color: Get.isDarkMode ? pinkClr : mainColor),
         );
       } else {
-        return Expanded(
-          child: controller.searchList.isEmpty &&
-                  controller.searchTextController.text.isNotEmpty
-              ? Get.isDarkMode
-                  ? Image.asset("assets/images/search_empty_dark.png")
-                  : Image.asset("assets/images/search_empry_light.png")
-              : GridView.builder(
-                  itemCount: controller.searchList.isEmpty
-                      ? controller.productsList.length
-                      : controller.searchList.length,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          
-                    childAspectRatio: 0.8,
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 6.0,
-                    maxCrossAxisExtent: 200,
+        return Container(
+        margin: EdgeInsets.only(top: 60),
+          child: Expanded(
+            child: controller.searchList.isEmpty &&
+                    controller.searchTextController.text.isNotEmpty
+                ? Get.isDarkMode
+                    ? Image.asset("assets/images/search_empty_dark.png")
+                    : Image.asset("assets/images/search_empry_light.png")
+                : GridView.builder(
+                  // controller: controller.gridScrollController,
+                    itemCount: controller.searchList.isEmpty
+                        ? controller.productsList.length
+                        : controller.searchList.length,
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            
+                      childAspectRatio: 0.8,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 6.0,
+                      maxCrossAxisExtent: 200,
+                    ),
+                    itemBuilder: (context, index) {
+                      if (controller.searchList.isEmpty) {
+                        return  buildCardItems(
+                              product: controller.productsList[index],
+                        );
+                      } else {
+                        return buildCardItems(
+                              product: controller.searchList[index],
+                        );
+                      }
+                    },
                   ),
-                  itemBuilder: (context, index) {
-                    if (controller.searchList.isEmpty) {
-                      return  buildCardItems(
-                            product: controller.productsList[index],
-                      );
-                    } else {
-                      return buildCardItems(
-                            product: controller.searchList[index],
-                      );
-                    }
-                  },
-                ),
+          ),
         );
         ;
       }

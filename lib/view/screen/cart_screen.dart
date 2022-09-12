@@ -15,7 +15,7 @@ import '../widgets/cart/cart_widget.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
-  final controller = Get.find<CartController>();
+  final controller = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(

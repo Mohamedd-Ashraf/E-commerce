@@ -18,7 +18,7 @@ class checkWidget extends StatelessWidget {
      this.text,
      this.buttonText,
   }) : super(key: key);
-    final controller = Get.find<AuthController>();
+  final controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return (GetBuilder<AuthController>(builder: (_) {

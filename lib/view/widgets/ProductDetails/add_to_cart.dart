@@ -15,7 +15,7 @@ class AddCart extends StatelessWidget {
     required this.productModels,
     Key? key,
   }) : super(key: key);
-  final controller = Get.find<CartController>();
+  final controller =  Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -21,7 +21,7 @@ class signUpScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final controller = Get.find<AuthController>();
+  final controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
