@@ -13,11 +13,13 @@ class ProductController extends GetxController {
   var searchList = <Product>[].obs;
   TextEditingController searchTextController = TextEditingController();
 
+
+
   @override
  void onInit(){
   super.onInit();
   getProducts();
- 
+  
     List? storedShoppings = box.read<List>('FavouriteList');
 
     if (storedShoppings != null) {
