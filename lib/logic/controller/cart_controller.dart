@@ -57,13 +57,13 @@ class CartController extends GetxController {
 
   void clearAllProductsCart() {
     Get.defaultDialog(
-      title: "Logout From App",
+      title: "Delete All?",
       titleStyle: const TextStyle(
         fontSize: 18,
         color: Colors.black,
         fontWeight: FontWeight.bold,
       ),
-      middleText: 'Are you sure you need to logout',
+      middleText: 'Are you want to delete all items ?',
       middleTextStyle: const TextStyle(
         fontSize: 18,
         color: Colors.black,

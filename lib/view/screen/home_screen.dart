@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
     _scrollController = ScrollController();
     return Container(
       child: NestedScrollView(
-          // controller: _scrollController,
+          controller: _scrollController,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverOverlapAbsorber(
@@ -36,18 +36,18 @@ class HomeScreen extends StatelessWidget {
                   actions: [
                     IconButton(
                         onPressed: () {
-                          // if (_isAppBarExpanded) {
-                          //   _scrollController!.animateTo(
-                          //       _scrollController!.position.extentInside,
-                          //       duration: Duration(milliseconds: 1300),
-                          //       curve: Curves.decelerate);
-                          // } else {
-                          //   _scrollController!.animateTo(
-                          //     _scrollController!.position.maxScrollExtent,
-                          //     duration: Duration(milliseconds: 1300),
-                          //     curve: Curves.decelerate,
-                          //   );
-                          // }
+                          if (_isAppBarExpanded) {
+                            _scrollController!.animateTo(
+                                _scrollController!.position.extentInside,
+                                duration: Duration(milliseconds: 1300),
+                                curve: Curves.decelerate);
+                          } else {
+                            _scrollController!.animateTo(
+                              _scrollController!.position.maxScrollExtent,
+                              duration: Duration(milliseconds: 1300),
+                              curve: Curves.decelerate,
+                            );
+                          }
                         },
                         icon: Icon(
                             _isAppBarExpanded ? Icons.search : Icons.close))
@@ -68,100 +68,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ];
           },
-          body: MyCardItem()),
+          body: Container(margin:EdgeInsets.only(top: 60) ,child: MyCardItem())),
     );
-
-// return Scaffold(
-    // body: NestedScrollView(
-    //   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
-    //     return <Widget>[
-    //       SliverOverlapAbsorber(
-    //         handle:
-    //         NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-    //         sliver: SliverAppBar(
-
-    //           pinned: true,
-    //           //floating: true,
-    //           stretch: true,
-    //           expandedHeight: 300.0,
-    //           flexibleSpace: FlexibleSpaceBar(
-    //             centerTitle: true,
-    //             title: const Text('Weather Report'),
-    //             background: Image.asset(
-    //               'assets/images/logo1.jpg',
-    //               fit: BoxFit.cover,
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ];
-    //   },
-    //   body: SafeArea(
-    //     child: Builder(
-    //         builder:(BuildContext context) {
-    //           return CustomScrollView(
-    //             slivers: <Widget>[
-    //               SliverOverlapInjector(
-    //                 // This is the flip side of the SliverOverlapAbsorber above.
-    //                 handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-    //                     context),
-    //               ),
-    //            SliverGrid.count(
-    //           crossAxisCount: 1,
-    //           children: [MyCardItem()],
-    //         ),
-
-    //             ],
-    //           );
-    //         }
-    //     ),
-    //   ),
-    // ),
-//     );
-
-    // ////////////////////////////////////////
-    // return Scaffold(
-    //   backgroundColor: context.theme.backgroundColor,
-    //   body: Container(
-    //     child: CustomScrollView(
-    //       slivers: [
-    //         Expanded(flex: 1,child: buildSliverAppBar()),
-    //         Expanded(
-    //           flex: 14,
-    //           child: SliverGrid.count(
-    //             crossAxisCount: 1,
-    //             children: [MyCardItem()],
-    //           ),
-    //         )
-    //         // SliverList(
-    //         //   delegate: SliverChildBuilderDelegate(
-    //         //           (context, index) {
-    //         //             if (controller.isLoading.value) {
-    //         //               return Center(
-    //         //                 child: CircularProgressIndicator(
-    //         //                     color:
-    //         //                         Get.isDarkMode ? pinkClr : mainColor),
-    //         //               );
-    //         //             } else {
-    //         //               if (controller.searchList.isEmpty) {
-    //         //                 return buildCardItems(
-    //         //                     controller: controller,
-    //         //                     cartController: cartController,
-    //         //                     product: controller.productsList[index]);
-    //         //               } else {
-    //         //                 return buildCardItems(
-    //         //                     controller: controller,
-    //         //                     cartController: cartController,
-    //         //                     product: controller.searchList[index]);
-    //         //               }
-    //         //             }
-    //         //           },
-    //         //         ),
-    //         // )
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
 
