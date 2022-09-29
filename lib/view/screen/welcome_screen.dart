@@ -25,7 +25,7 @@ class welcomeScreen extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              "assets/images/Zreebah.jpg",
+              "assets/images/Zreebah.gif",
               fit: BoxFit.cover,
             ),
           ),
@@ -36,7 +36,7 @@ class welcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 250,),
+                SizedBox(height: 450,),
                 // Container(
                 //   height: 60,
                 //   width: 190,
@@ -104,7 +104,7 @@ class welcomeScreen extends StatelessWidget {
                     myText(
                         text: "Dont\'t Have Account ?",
                         size: 18,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.normal),
                     TextButton(
                       onPressed: () {
@@ -114,7 +114,7 @@ class welcomeScreen extends StatelessWidget {
                           decoration: TextDecoration.underline,
                           text: "Get One Now",
                           size: 16,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.normal),
                     )
                   ],

@@ -28,10 +28,10 @@ class _DeliveryContinerWidgetState extends State<DeliveryContinerWidget> {
     return Column(
       children: [
         buildRadioContiner(
-          address: "R2 PS cafe",
-          name: "El Zreebah Shop",
+          address: "Cairo",
+          name: "Mahal Shopping",
           phone: "123456789",
-          title: "Shopping To El Zreebah",
+          title: "Shopping To Mahal Shopping",
           value: 1,
           color: changeColors ? Colors.white : Colors.grey.shade300,
           icon: Container(),
